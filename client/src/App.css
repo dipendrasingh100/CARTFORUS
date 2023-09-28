@@ -1,0 +1,8 @@
+#root>div:first-child{
+    margin: auto;
+    max-width: 1440px;
+}
+
+main{
+    min-height: 27.2vh;
+}

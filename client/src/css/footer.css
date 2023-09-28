@@ -1,0 +1,278 @@
+.footer {
+    max-width: 1440px;
+    padding: 0;
+}
+
+.subfooter1 {
+    /* height: 169px; */
+    color: #fff;
+    width: 100%;
+    background-color: rgba(34, 51, 59, 0.90);
+    padding: 42.477px 64.313px 41.523px 64px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+}
+
+.right-cont {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    color: #fff;
+}
+
+.subfooter1 .details {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+.details .title:first-child {
+    text-transform: capitalize;
+}
+
+.title span {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.details ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+.details ul span {
+    margin-left: 6px;
+}
+
+.sources {
+    max-width: 289px;
+    width: 20rem;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.sources .input-group-text {
+    background-color: #EAE0D5;
+}
+
+.input-group-text {
+    display: flex;
+    padding: 8px 12px;
+    align-items: center;
+}
+
+.sources a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.sources li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.subfooter {
+    /* height: 419px; */
+    background-color: #22333B;
+    padding: 0 3rem;
+}
+
+.subfooter-top {
+    padding: 2rem 0;
+    display: flex;
+    gap: 5%;
+}
+
+.about-container .about-text {
+    width: 282px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+    margin: 10px 0;
+}
+
+.about-container .icons {
+    display: flex;
+    gap: 1rem;
+    margin: 16px 0;
+}
+
+.link-container {
+    width: 50%;
+}
+
+.title {
+    color: #E9C46A;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 150%;
+}
+
+.grid-3 {
+    width: 100%;
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+}
+
+.grid-3 ul {
+    width: 100%;
+    list-style-type: none;
+    color: #c8c8c8;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.subfooter-bottom {
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 11px 7px 0px;
+    border-top: 1px solid #9B9B9B;
+    font-size: 12px;
+}
+
+
+.others {
+    display: flex;
+    gap: 2rem;
+}
+
+.contact-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.grid-3 div {
+    color: #fff;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex svg {
+    display: none;
+}
+
+@media screen and (max-width:1150px) {
+    .subfooter-top {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width:900px) {
+    .subfooter-top {
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+
+    .about-container,
+    .contact-cont,
+    .link-container {
+        width: 100%;
+    }
+
+    .about-container .about-text {
+        width: auto;
+    }
+
+    .contact-cont {
+        flex-direction: row;
+    }
+
+    .sources {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .grid-3 {
+        grid-template-columns: auto;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .grid-3>div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2px 3px;
+        /* border: 1px solid gray; */
+    }
+
+    .grid-3 ul {
+        height: 0;
+        display: none;
+    }
+
+    .show {
+        height: 210px !important;
+        display: flex !important;
+        margin-left: 5px !important;
+        transition: .2s ease-in-out;
+    }
+
+    .flex svg {
+        display: block;
+    }
+
+    .contact-cont {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .right-cont {
+        width: 100%;
+    }
+
+    .others {
+        width: 22vw;
+        gap: 15%;
+    }
+
+    .subfooter {
+        padding: 0 1rem;
+    }
+
+    .title {
+        font-size: 18px;
+    }
+
+    .about-container .about-text {
+        font-size: 12px;
+    }
+
+    .flex h5, .sources{
+        font-size: 1rem;
+    }
+}
