@@ -11,6 +11,7 @@ import Laptops from "./pages/Laptops"
 import Cameras from "./pages/Cameras"
 import Accessories from "./pages/Accessories"
 import Books from "./pages/Books"
+import AuthLandingPage from './components/AuthLandingPage'
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path='/camera-store' element={<Cameras />} />
           <Route path='/accessories' element={<Accessories />} />
           <Route path='/book-store' element={<Books />} />
+          <Route path='/account/:auth' element={<AuthLandingPage />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </main>

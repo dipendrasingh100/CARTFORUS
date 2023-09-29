@@ -5,7 +5,7 @@
     overflow-x: scroll;
 }
 
-.navbar::-webkit-scrollbar{
+.navbar::-webkit-scrollbar {
     display: none;
 }
 
@@ -20,14 +20,14 @@
     font-size: 1rem;
 }
 
-ul>a {
+.navbar ul>a {
     text-decoration: none;
     color: #fff;
     transition: .1s ease-in;
     position: relative;
 }
 
-ul>a:hover {
+.navbar ul>a:hover {
     color: #F4A261;
 }
 
@@ -37,7 +37,7 @@ ul>a:hover {
 }
 
 .show-border>li::after,
-ul>a::after {
+.navbar ul>a::after {
     content: "";
     position: absolute;
     display: block;
@@ -50,6 +50,6 @@ ul>a::after {
 }
 
 .show-border>li::after,
-ul>a:hover::after {
+.navbar ul>a:hover::after {
     width: calc(100% + 18px);
 }
