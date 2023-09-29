@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from "axios"
 import { Link, useNavigate } from 'react-router-dom'
-// import host from '../host'
+import host from "../host"
 
 const Login = () => {
   const [inputdata, setInput] = useState({ email: "", password: "" })
@@ -14,36 +14,36 @@ const Login = () => {
     const checkEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(inputdata.email)
 
     if (checkEmail) {
-  //     try {
-  //       const { data } = await axios.post(`${host}/user/login`, inputdata, {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         }
-  //       })
-  //       localStorage.setItem("token", data.accesstoken)
+      try {
+        const { data } = await axios.post(`${host}/api/login`, inputdata, {
+          headers: {
+            "Content-Type": "application/json",
+          }
+        })
+        localStorage.setItem("token", data.token)
 
-  //       navigate("/dashboard")
+        navigate("/")
 
-  //     } catch (err) {
+      } catch (err) {
         // You can still access error responses if available
-  //       if (err.response) {
-  //         switch (err.response.status) {
-  //           case 401:
-  //             setError({ ...errordata, password: err.response.data.message })
-  //             break;
-  //           case 404:
-  //             setError({
-  //               ...errordata, email: err.response.data.message
-  //             })
-  //             break;
-  //           default:
-  //             console.log("Error Response Data:", err.response.data.message);
-  //             break;
-  //         }
-  //       }
-  //     }
-    }else{
-      setError({...errordata, email: "please provide a valid email address" })
+        if (err.response) {
+          switch (err.response.status) {
+            case 401:
+              setError({ ...errordata, password: err.response.data.message })
+              break;
+            case 404:
+              setError({
+                ...errordata, email: err.response.data.message
+              })
+              break;
+            default:
+              console.log("Error Response Data:", err.response.data.message);
+              break;
+          }
+        }
+      }
+    } else {
+      setError({ ...errordata, email: "please provide a valid email address" })
     }
   }
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
-// import host from '../host'
+import host from '../host'
 
 const Register = () => {
   const [inputdata, setInput] = useState({ name: "", phone: "", email: "", password: "" })
@@ -16,24 +16,23 @@ const Register = () => {
     const passwordCheck = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(inputdata.password)
 
     if (checkEmail && passwordCheck) {
-  //     try {
-  //       const { data } = await axios.post(`${host}/user/register`, inputdata)
-        
-  //       window.localStorage.setItem("token", data.accesstoken)
-  //       // Successful response
-  //       setInput({ name: "", phone: "", email: "", password: "" })
+      try {
+        const { data } = await axios.post(`${host}/api/signup`, inputdata)
+        window.localStorage.setItem("token", data.token)
+        // Successful response
+        setInput({ name: "", phone: "", email: "", password: "" })
 
-  //       navigate("/dashboard")
+        navigate("/")
 
-  //     } catch (err) {
-  //       if (err.response) {
-  //         if (err.response.status === 409) {
-  //           setError({ ...errordata, email: err.response.data.message, other: "Please Login" })
-  //         } else {
-  //           setError({ ...errordata, other: err.response.data.message })
-  //         }
-  //       }
-  //     }
+      } catch (err) {
+        if (err.response) {
+          if (err.response.status === 409) {
+            setError({ ...errordata, email: err.response.data.message, other: "Please Login" })
+          } else {
+            setError({ ...errordata, other: err.response.data.message })
+          }
+        }
+      }
     } else {
       //Minimum eight characters, at least one letter and one number:
       if (!passwordCheck) {

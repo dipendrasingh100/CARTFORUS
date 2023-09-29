@@ -11,6 +11,7 @@ import NotFound from '../pages/NotFound'
 
 const AuthLandingPage = () => {
     const [status, setStatus] = useState(true)
+    const navigate = useNavigate()
 
     // const navigate = useNavigate()
     const { auth } = useParams()
@@ -22,7 +23,7 @@ const AuthLandingPage = () => {
             setStatus(false);
         }
     }, [auth]);
-    
+
     if (!auth || (auth !== "login" && auth !== "signup")) {
         return <NotFound />
     }
@@ -55,10 +56,10 @@ const AuthLandingPage = () => {
                 <div className='banner'></div>
                 <div >
                     <div className="header">
-                        <div className={`login ${status ? "wh" : ""}`} onClick={() => setStatus(true)}>
+                        <div className={`login ${status ? "wh" : ""}`} onClick={() => navigate("/account/login")}>
                             Login
                         </div>
-                        <div className={`register ${status ? "" : "wh"}`} onClick={() => setStatus(false)}>
+                        <div className={`register ${status ? "" : "wh"}`} onClick={() => navigate("/account/signup")}>
                             Register
                         </div>
                     </div>
