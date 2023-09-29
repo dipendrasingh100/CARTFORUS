@@ -265,14 +265,14 @@
     }
 
     .title {
-        font-size: 18px;
+        font-size: 1rem;
     }
 
     .about-container .about-text {
-        font-size: 12px;
+        font-size: 0.8rem;
     }
 
     .flex h5, .sources{
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
 }
