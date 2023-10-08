@@ -1,42 +1,60 @@
 const bcrypt = require("bcrypt")
+const asyncHandler = require("express-async-handler")
 const generateToken = require("../utils/generateToken")
+const User = require("../models/userModel")
+const ErrorHandler = require("../utils/errorHandler")
+const sendToken = require("../utils/sendToken")
 
-const data = []
-
-const login = (req, res) => {
+const login = asyncHandler(async (req, res, next) => {
     const { email, password } = req.body
-    const user = data.find(user => user.email === email)
+
+    if (!email || !password) {
+        return next(new ErrorHandler("Please Enter Email & Password"), 400)
+    }
+
+    const user = await User.findOne({ email }).select("+password")  //to include the password in returned document becz default is false
     if (!user) {
-        res.status(404)
-        throw new Error("User not found! Please register")
+        return next(new ErrorHandler("Invalid Email or Password", 404))
     }
 
-    const checkPassword = bcrypt.compareSync(password, user["password"])
+    const checkPassword = await bcrypt.compare(password, user.password)
     if (!checkPassword) {
-        res.status(401)
-        throw new Error("Wrong Password!")
+        return next(new ErrorHandler('Invalid Email or Password', 401))
     }
 
-    const token = generateToken(user)
-    res.status(200)
-    res.send({ message: "You are loggedin", token })
-}
+    const token = generateToken(user._id)
+    sendToken(token, 200, res)
+})
 
-const signup = (req, res) => {
+
+const signup = asyncHandler(async (req, res, next) => {
     const { name, mobile, email, password } = req.body
-    const user = data.find(item => item.email === email)  //return undefined if not found
 
-    if (user) {
-        res.status(409)
-        throw new Error("Email is already registered")
+    //check if email already registered
+    const userExists = await User.findOne({ email })  //if not found return null, else the document
+    if (userExists) {
+        return next(new ErrorHandler("Email already registered", 409))
     }
 
-    const hashPassword = bcrypt.hashSync(password, 10)
-    data.push({ name, mobile, email, password: hashPassword })
-    const token = generateToken({ name, email })
+    const hashPassword = await bcrypt.hash(password, 10)
 
-    res.status(201)
-    res.send({ message: "You are successfully Registered", token })
+    const newuser = await User.create({ name, mobile, email, password: hashPassword })
+
+    const token = generateToken({ userid: newuser._id })
+
+    sendToken(token, 201, res)
 }
+)
 
-module.exports = { login, signup }
+
+const logout = (req, res) => {
+    res.cookie("token", null, {
+        expires: new Date(Date.now()),
+        httpOnly: true
+    })
+    res.status(200).json({
+        success: true,
+        message: "Logged out"
+    })
+}
+module.exports = { login, signup, logout }
