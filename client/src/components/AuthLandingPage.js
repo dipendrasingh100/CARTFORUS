@@ -1,54 +1,37 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { logout } from '../app/userSlice'
+import NotFound from '../pages/NotFound'
 import Register from './Register'
 import Login from "./Login"
+import validateToken from '../utils/decodeToken'
 import "../css/auth.css"
-import { useNavigate, useParams } from 'react-router-dom'
-import NotFound from '../pages/NotFound'
-// import { useNavigate } from 'react-router-dom'
-// import axios from 'axios'
-// import host from './host'
 
 
 const AuthLandingPage = () => {
-    const [status, setStatus] = useState(true)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
-
-    // const navigate = useNavigate()
     const { auth } = useParams()
+    const [status, setStatus] = useState(true)
 
     useEffect(() => {
-        if (auth === "login") {
-            setStatus(true);
-        } else {
-            setStatus(false);
-        }
-    }, [auth]);
+        const { loggedin, } = validateToken()
 
-    if (!auth || (auth !== "login" && auth !== "signup")) {
+        if (auth === 'logout') {
+            localStorage.removeItem('token');
+            dispatch(logout())
+            navigate('/')
+        } else if (loggedin === 1) {
+            navigate('/');
+        } else {
+            setStatus(auth === 'login');
+        }
+    }, [auth, navigate, dispatch]);
+
+    if (!auth || (auth !== "login" && auth !== "signup" && auth !== "logout")) {
         return <NotFound />
     }
-
-    // useEffect(() => {
-    //     const token = localStorage.getItem("token")
-
-    //     const checkToken = async () => {
-    //         try {
-    //             const res = await axios.get(`${host}/dashboard`, {
-    //                 headers: {
-    //                     Authorization: `Bearer ${token}`
-    //                 }
-    //             })
-    //             if (res.status === 200) {
-    //                 navigate("/dashboard")
-    //             }
-    //         } catch (err) {
-    //             console.error(err.response.data.message);
-    //         }
-    //     }
-    //     if (token) {
-    //         checkToken()
-    //     }
-    // }, [navigate])
 
     return (
         <div className="main-container flex center h-100">

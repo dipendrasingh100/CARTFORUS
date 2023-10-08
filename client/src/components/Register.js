@@ -1,27 +1,33 @@
 import React, { useState } from 'react'
-import axios from "axios"
 import { useNavigate } from 'react-router-dom'
-import host from '../host'
+import { useDispatch } from 'react-redux'
+import { login } from '../app/userSlice'
+import { verifyEmail, verifyPass } from '../utils/email_pass_verify'
+import server from '../host'
+import validateToken from '../utils/decodeToken'
 
 const Register = () => {
   const [inputdata, setInput] = useState({ name: "", phone: "", email: "", password: "" })
   const [errordata, setError] = useState({ email: "", password: "", other: "" })
+  const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const checkEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(inputdata.email)
-    const passwordCheck = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(inputdata.password)
+    const checkEmail = verifyEmail(inputdata.email)
+    const passwordCheck = verifyPass(inputdata.password)
 
     if (checkEmail && passwordCheck) {
       try {
-        const { data } = await axios.post(`${host}/api/signup`, inputdata)
+        const { data } = await server.post('/api/signup', inputdata)
         window.localStorage.setItem("token", data.token)
         // Successful response
         setInput({ name: "", phone: "", email: "", password: "" })
+        const decodePayload = validateToken()
 
+        dispatch(login(decodePayload.username))
         navigate("/")
 
       } catch (err) {

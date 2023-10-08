@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import "../css/header.css"
-import logo from "../assets/logo/png/logo-no-background.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import Navigations from './Navigations'
 import Search from './Search'
 import User from './User'
+import logo from "../assets/logo/png/logo-no-background.png"
+import "../css/header.css"
 
 const Header = () => {
     return (
@@ -21,7 +21,9 @@ const Header = () => {
                 <div className="user-main">
                     <User />
                     <div className="cart-container">
-                        <FontAwesomeIcon icon={faCartShopping} size='lg' />
+                        <Link to='/user/cart'>
+                            <FontAwesomeIcon icon={faCartShopping} size='lg' />
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@ import "../css/footer.css"
 import logo from "../assets/logo/png/logo-color-resized.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faCircleMinus, faCirclePlus, faEnvelope, faMapPin } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
     const [cat, setCat] = useState(false)
@@ -44,12 +45,11 @@ const Footer = () => {
                                         <FontAwesomeIcon icon={info ? faCircleMinus : faCirclePlus} style={{ "--fa-primary-color": "#264653", "--fa-secondary-color": "#ffffff", }} />
                                     </div>
                                     <ul className={`col-2 ${info && "show"}`}>
-                                        <li>Hardware</li>
-                                        <li>Sanitaryware & Bath</li>
-                                        <li>Home appliances</li>
-                                        <li>Brands</li>
-                                        <li>Get Quote</li>
-                                        <li>Shipping FAQs*</li>
+                                        <Link to='/mobile-store'><li>Mobiles</li></Link>
+                                        <Link to='/laptop-store'><li>Laptops</li></Link>
+                                        <Link to='/camera-store'><li>Cameras</li></Link>
+                                        <Link to='/accessories'><li>Accessories</li></Link>
+                                        <Link to='/book-store'><li>Books</li></Link>
                                     </ul>
                                 </div>
                                 <div onClick={() => setSer(!ser)}>

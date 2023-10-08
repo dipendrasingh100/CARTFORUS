@@ -63,7 +63,6 @@
 
 .dropdown-cont ul {
     list-style-type: none;
-    padding: 0 10px;
     margin: 0;
     font-size: 0.8rem;
 }
@@ -74,11 +73,16 @@
 
 .dropdown-cont ul li {
     color: black;
-    margin: 10px 0;
+    padding: 10px;
+    /* margin: 10px 0; */
+}
+
+.dropdown-cont ul li:hover{
+    background-color: #28282838;
 }
 
 
-.dropdown-cont ul li:first-child {
+.res-li{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -88,6 +92,10 @@
 
 .signup-btn {
     color: #2A9D8F;
+}
+
+.uname{
+    display: none;
 }
 
 @media screen and (max-width:900px) {
@@ -104,5 +112,8 @@
         padding: 0 6px;
         height: 1.8rem;
         gap: 6px;
+    }
+    .uname{
+        display: block;
     }
 }
