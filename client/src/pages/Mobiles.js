@@ -3,8 +3,11 @@ import Product from '../components/Product'
 import "../css/page.css"
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProducts } from '../app/productSlice'
+import { useParams } from 'react-router-dom'
+import Loader from "../components/Loader"
 
 const Mobiles = () => {
+  const { category } = useParams()
   const dispatch = useDispatch()
   const { products, isLoading, isError, productsCount } = useSelector(state => state.product)
 
@@ -13,17 +16,21 @@ const Mobiles = () => {
   }, [dispatch])
 
   return (
-    <div>
-      <h1>Smartphones</h1>
-      <div className="p-card-container">
-        {
-          products && products.map(item=>(
-            <Product key={item._id} product={item}/>
-          ))
+    <>
+      <h1>{category}</h1>
+      {
+        isLoading ? <Loader />
+          :
+          <div className="p-card-container">
+            {
+              products && products.map(item => (
+                <Product key={item._id} product={item} />
+              ))
 
-        }
-      </div>
-    </div>
+            }
+          </div>
+      }
+    </>
   )
 }
 

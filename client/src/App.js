@@ -17,6 +17,7 @@ import WhishList from './pages/WhishList'
 
 import "./App.css"
 import ProductDetail from './components/ProductDetail'
+import Loader from './components/Loader'
 //can use lazy loading to improve the inital loading time
 
 const App = () => {
@@ -27,11 +28,11 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/account/:auth' element={<AuthLandingPage />} />
-          <Route path='/mobile-store' element={<Mobiles />} />
-          <Route path='/laptop-store' element={<Laptops />} />
-          <Route path='/camera-store' element={<Cameras />} />
+          <Route path='/:category' element={<Mobiles />} />
+          {/* <Route path='/laptop-store' element={<Loader />} /> */}
+          {/* <Route path='/camera-store' element={<Cameras />} />
           <Route path='/accessories' element={<Accessories />} />
-          <Route path='/book-store' element={<Books />} />
+          <Route path='/book-store' element={<Books />} /> */}
           <Route path='/product/:id' element={<ProductDetail />} />
           <Route element={<RequireAuth />}>
             <Route path='/user/cart' element={<Cart />} />

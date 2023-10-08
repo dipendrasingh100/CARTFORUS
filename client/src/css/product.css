@@ -4,6 +4,7 @@ a {
 
 .productCard {
     width: 16vmax;
+    height: 30vmax;
     display: flex;
     flex-direction: column;
     color: rgba(48, 48, 48);
@@ -18,30 +19,49 @@ a {
     margin: auto;
 }
 
-.productCard>div {
+.productCard .p-rating-cont {
     margin: 0.5vmax;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
-.productCard>div>span {
+.p-rating-cont>span,
+.actPrice {
     font-size: 0.8vmax;
     color: rgba(15, 15, 15, 0.5);
     margin-left: 1vmax;
 }
 
 .productCard>p {
+    height: 3.5vmax;
     text-decoration: none;
-    font-size: 1.5vmax;
+    font-size: 1.2vmax;
     margin: 1vmax 0.5vmax;
     margin-bottom: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.productCard>span {
-    margin: 0.5vmax;
-    color: brown;
+.discPrice {
+    color: brown ;
     font-size: 1vmax;
+}
+
+.actPrice{
+    text-decoration: line-through;
+}
+
+.productCard .discount{
+    padding: 0 !important;
+}
+
+
+.productCard .p-price-cont{
+    margin: 0.5vmax;
+    align-items: center;
 }
 
 .productCard:hover {

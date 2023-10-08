@@ -8,11 +8,11 @@ import { useSelector } from 'react-redux'
 const ProductDetail = () => {
     const { id } = useParams()
     const { products } = useSelector(state => state.product)
-
+    
     const [productDetails, setProductDetails] = useState(null)
     const [timg, setTimg] = useState(null)
-
-
+    
+    
     useEffect(() => {
         console.log("in useEffect");
         const product = products.find(item => item._id === id)
