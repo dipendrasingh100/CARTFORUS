@@ -1,22 +1,34 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import server from "../host";
 
-export const fetchProducts = createAsyncThunk("fetchProducts", async () => {
-    const { data } = await server.get("/api/v1/products")
-    return data
+export const fetchProducts = createAsyncThunk("fetchProducts", async ({ keyword = "", currentPage = 1, category }, { rejectWithValue }) => {
+    try {
+        
+        let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}`
+
+        if (category) {
+            link += `&category=${category}`;
+        }
+        const { data } = await server.get(link)
+        return data
+    } catch (error) {
+        return rejectWithValue(error.response.data.message)
+    }
 })
 
-const productReduce = createSlice({
+const productReducer = createSlice({
     name: "products",
     initialState: {
         products: null,
         productsCount: 0,
         isLoading: false,
-        isError: false
+        resultPerPage: 0,
+        error: null,
+        filteredProductsCount: 0
     },
     reducers: {
         clearError: (state) => {
-            state.isError = false
+            state.error = null
         }
     },
     extraReducers: (builder) => {
@@ -28,13 +40,17 @@ const productReduce = createSlice({
             state.isLoading = false
             state.products = action.payload.products
             state.productsCount = action.payload.productCount
+            state.resultPerPage = action.payload.resultPerPage
+            state.filteredProductsCount = action.payload.filteredProductsCount
         });
 
-        builder.addCase(fetchProducts.rejected, (state) => {
-            state.isError = true
+        builder.addCase(fetchProducts.rejected, (state, action) => {
+            console.log(action.error);
+            state.error = action.payload
         })
 
     }
 })
 
-export default productReduce.reducer;
+export default productReducer.reducer;
+export const { clearError } = productReducer.actions

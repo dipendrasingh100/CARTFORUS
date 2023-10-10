@@ -1,24 +1,18 @@
 import React from 'react'
 import ReactStars from "react-rating-stars-component"
-import "../css/product.css"
 import { Link } from 'react-router-dom'
+import { reactStarsOptions } from '../utils/constants'
+import "../css/product.css"
 
-const Product = ({ product }) => {
-    const options = {
-        edit: false,
-        color: 'rgba(20,20,20,0.1)',
-        activeColor: '#ffd700',
-        size: window.innerWidth < 600 ? 18 : 22,
-        value: product.rating,
-        isHalf: true
-    }
+const ProductCard = ({ product }) => {
+
     return (
         <Link to={`/product/${product._id}`}>
             <div className='productCard'>
                 <img src={product.images[0].replace(/128/g, "416")} alt="mobile" />
                 <p>{product.title}</p>
                 <div className='p-rating-cont'>
-                    <ReactStars {...options} />
+                    <ReactStars {...reactStarsOptions} value={product.rating} />
                     <span>256 Reviews</span>
                 </div>
                 <div className="p-price-cont">
@@ -31,4 +25,4 @@ const Product = ({ product }) => {
     )
 }
 
-export default Product
+export default ProductCard

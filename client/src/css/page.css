@@ -6,3 +6,9 @@
     justify-content: center;
     max-width: 100%;
 }
+
+.pagination-box{
+    display: flex;
+    justify-content: center;
+    margin: 5vmax;
+}

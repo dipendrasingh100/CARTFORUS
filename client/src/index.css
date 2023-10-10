@@ -14,7 +14,7 @@
   font-family: 'Lato', sans-serif;
 }
 
-ul {
+ul, button {
   margin: 0;
   padding: 0;
 }

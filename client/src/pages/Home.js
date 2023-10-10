@@ -7,7 +7,7 @@ const Home = () => {
 
   return (
     <>
-      <MetaData title="Home - CARFORUS" />
+      <MetaData title="Home || CARTFORUS" />
       <div>
         <ImageSlider />
 
@@ -20,7 +20,7 @@ const Home = () => {
           <ProductSlider />
         </div>
         <div className="p-container">
-          <p className='p-bar-title'>Featured</p>
+          <p className='p-bar-title'>Deal of the Day</p>
           <ProductSlider />
         </div>
       </div>
