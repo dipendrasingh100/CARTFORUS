@@ -7,7 +7,6 @@ class ApiFeatures {
         console.log("Query - ", this.queryStr);
     }
 
-
     search() {
         const keyword = this.queryStr.keyword
             ? {
@@ -21,6 +20,7 @@ class ApiFeatures {
 
         return this
     }
+
     filter() {
         const queryCopy = { ...this.queryStr }
         //Removing some fields for category
@@ -42,7 +42,8 @@ class ApiFeatures {
         const currentPage = Number(this.queryStr.page) || 1
         const skipItems = resultPerPage * (currentPage - 1)
 
-        this.query = this.query.limit(resultPerPage).skip(skipItems)
+        // chained a .clone() method to the .find() method to prevent query already exists error
+        this.query = this.query.limit(resultPerPage).skip(skipItems).clone()
         return this
     }
 
