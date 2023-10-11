@@ -52,7 +52,7 @@
     color: gray;
 }
 
-input {
+.inp-container input {
     border: none;
     outline: none;
     border-bottom: 1px solid gray;

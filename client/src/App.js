@@ -1,23 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Routes } from "react-router-dom"
+import { useDispatch } from 'react-redux'
 
+import { loadUser } from './app/userSlice'
+import AuthLandingPage from './components/AuthLandingPage'
+import ProductDetails from './components/ProductDetails'
+import RequireAuth from './components/RequireAuth'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import NotFound from './pages/NotFound'
-import Home from './pages/Home'
 import Products from "./pages/Products"
-import AuthLandingPage from './components/AuthLandingPage'
-import RequireAuth from './components/RequireAuth'
-import Cart from './pages/Cart'
 import WhishList from './pages/WhishList'
+import Home from './pages/Home'
+import Cart from './pages/Cart'
 
+import 'react-toastify/dist/ReactToastify.css';
 import "./App.css"
-import ProductDetails from './components/ProductDetails'
-import ProductsCategory from './pages/ProductsCategory'
+
 
 //can use lazy loading to improve the inital loading time
 
 const App = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(loadUser())
+  }, [dispatch])
+
   return (
     <div>
       <Header />

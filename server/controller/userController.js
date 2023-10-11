@@ -22,8 +22,7 @@ const login = asyncHandler(async (req, res, next) => {
         return next(new ErrorHandler('Invalid Email or Password', 401))
     }
 
-    const token = generateToken(user._id)
-    sendToken(token, 200, res)
+    sendToken(user, 200, res)
 })
 
 
@@ -40,21 +39,32 @@ const signup = asyncHandler(async (req, res, next) => {
 
     const newuser = await User.create({ name, mobile, email, password: hashPassword })
 
-    const token = generateToken({ userid: newuser._id })
+    // const token = generateToken({ userid: newuser._id })
 
-    sendToken(token, 201, res)
+    sendToken(newuser, 201, res)
 }
 )
 
-
 const logout = (req, res) => {
-    res.cookie("token", null, {
+    res.cookie("jwt", null, {
+        withCredentials: true,
         expires: new Date(Date.now()),
-        httpOnly: true
+        httpOnly: false
     })
     res.status(200).json({
         success: true,
         message: "Logged out"
     })
 }
-module.exports = { login, signup, logout }
+
+//Get user details
+const getUserDetails = asyncHandler(async (req, res, next) => {
+    console.log(req.id);
+    const user = await User.findById(req.id);
+    console.log("request made to loaduser");
+    res.status(200).json({
+        success: true,
+        user,
+    });
+});
+module.exports = { login, signup, logout, getUserDetails }

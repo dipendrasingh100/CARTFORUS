@@ -1,20 +1,30 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight, faUser } from '@fortawesome/free-solid-svg-icons'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "../css/user.css"
+import { logout } from '../app/userSlice'
+import { toastOptions } from '../utils/constants'
 
 const User = () => {
-    const { loggedin, username } = useSelector(state => state.user)
-
+    const dispatch = useDispatch()
+    const { isAuthenticated, user } = useSelector(state => state.user)
+    const handleLogout = () => {
+        dispatch(logout())
+        
+        toast.success('Logout Successfully', toastOptions);
+        return <ToastContainer />
+    }
     //convert the button after login
     return (
         <div className="user-container">
-            {loggedin === 1 ?
+            {isAuthenticated ?
                 <div className="user-btn">
                     <FontAwesomeIcon icon={faUser} style={{ color: "#2A9D8F", }} />
-                    <span>{username.split(" ")[0]}</span>
+                    <span>{user?.name?.split(" ")[0]}</span>
                     <FontAwesomeIcon icon={faAngleRight} size="xs" style={{ color: "#2A9D8F", }} />
                 </div> :
                 <Link to='/account/login'>
@@ -27,8 +37,8 @@ const User = () => {
             }
             <div className="dropdown-cont">
                 <ul>
-                    {loggedin ?
-                        <li className='res-li uname'>{username.split(" ")[0]}</li> :
+                    {isAuthenticated ?
+                        <li className='res-li uname'>{user?.name?.split(" ")[0]}</li> :
                         <Link to='/account/signup'>
                             <li className='res-li'>
                                 New User?
@@ -42,8 +52,8 @@ const User = () => {
                         <li>Wishlist</li>
                     </Link>
                     {
-                        loggedin === 1 && <Link to='/account/logout'>
-                            <li>Logout</li>
+                        isAuthenticated && <Link to='/account/logout'>
+                            <li onClick={handleLogout}>Logout</li>
                         </Link>
                     }
                 </ul>

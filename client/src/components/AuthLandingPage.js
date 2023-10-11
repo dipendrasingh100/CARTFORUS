@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { logout } from '../app/userSlice'
+// import { logout } from '../app/userSlice'
 import NotFound from '../pages/NotFound'
 import Register from './Register'
 import Login from "./Login"
 import validateToken from '../utils/decodeToken'
 import "../css/auth.css"
+import MetaData from './MetaData'
+import { logout } from '../app/userSlice'
 
 
 const AuthLandingPage = () => {
@@ -21,7 +23,7 @@ const AuthLandingPage = () => {
         if (auth === 'logout') {
             localStorage.removeItem('token');
             dispatch(logout())
-            navigate('/')
+            // navigate('/')
         } else if (loggedin === 1) {
             navigate('/');
         } else {
@@ -35,6 +37,8 @@ const AuthLandingPage = () => {
 
     return (
         <div className="main-container flex center h-100">
+            <MetaData title='Authentication || CARTFORUS' />
+
             <div className="m-container">
                 <div className='banner'></div>
                 <div >
