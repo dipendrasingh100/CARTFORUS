@@ -8,6 +8,7 @@ import Loader from "../components/Loader"
 import ProductCard from '../components/ProductCard'
 import { toastOptions } from '../utils/constants'
 import Pagination from "react-js-pagination"
+import { handleLink } from "../utils/helperFuction"
 import "../css/page.css"
 
 const ProductsCategory = () => {
@@ -22,6 +23,7 @@ const ProductsCategory = () => {
   }
 
   useEffect(() => {
+    handleLink()
     dispatch(fetchProducts({ category, currentPage }))
   }, [dispatch, category, currentPage])
 

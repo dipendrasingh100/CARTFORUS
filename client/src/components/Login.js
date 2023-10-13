@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { toastOptions } from '../utils/constants'
 import Loader from './Loader'
 import { clearError } from '../app/userSlice'
+import { handleLink } from '../utils/helperFuction'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -35,6 +36,7 @@ const Login = () => {
   }
 
   useEffect(() => {
+    handleLink()
     if (error) {
       toast.error(error, toastOptions);
       dispatch(clearError())
@@ -71,7 +73,7 @@ const Login = () => {
               <p>{errordata.password}</p>
             </div>
             <div className="footer flex">
-              <Link to="/password/forget">Forgot Password?</Link>
+              <Link to="/password/forgot">Forgot Password?</Link>
               <button type="submit" className='btn'>Login</button>
             </div>
           </form>

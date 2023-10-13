@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import "../css/nav.css"
 
-const Navigations = ({burger}) => {
+const Navigations = ({ burger }) => {
 
     return (
         <nav>
@@ -11,6 +11,11 @@ const Navigations = ({burger}) => {
                     <NavLink to='/products/mobile' className={({ isActive }) => (isActive ? "show-border" : "")}>
                         <li>Mobiles</li>
                     </NavLink>
+                    {/* <ul className='sub-category'>
+                        <li>MI</li>
+                        <li>Realme</li>
+                        <li>Apple</li>
+                    </ul> */}
                     <NavLink to='/products/laptop' className={({ isActive }) => (isActive ? "show-border" : "")}>
                         <li>Laptops</li>
                     </NavLink>

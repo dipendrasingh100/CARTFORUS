@@ -1,5 +1,6 @@
 const { Schema, model, default: mongoose } = require("mongoose")
 const validator = require("validator")
+const crypto = require("crypto")
 
 const userSchema = new Schema({
     name: {
@@ -34,7 +35,22 @@ const userSchema = new Schema({
         type: Date,
         default: Date.now,
     },
-
+    resetPasswordToken: String,
+    resetPasswordExpire: Date
 })
+
+userSchema.methods.getResetPasswordToken = function () {
+
+    //generate Token
+    const resetToken = crypto.randomBytes(20).toString("hex")
+
+    this.resetPasswordToken = crypto
+        .createHash("sha256")
+        .update(resetToken)
+        .digest("hex")
+
+    this.resetPasswordExpire = Date.now() + 15 * 60 * 1000
+    return resetToken
+}
 
 module.exports = model("User", userSchema)

@@ -10,7 +10,7 @@
     /* border: 1px solid red; */
     position: fixed;
     top: 0;
-    z-index: 10;
+    z-index: 10000;
     width: 100%;
     max-width: 1440px;
     background-color: #fff;
@@ -94,7 +94,7 @@
         width: 120px;
     }
 
-    .navbar ul {
+    .navbar>ul {
         font-size: 0.8rem !important;
     }
 
@@ -140,7 +140,7 @@
         height: 1.8rem;
     }
 
-    .navbar ul{
+    .navbar>ul{
         padding-left: 12px !important;
     }
 }

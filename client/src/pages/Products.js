@@ -11,6 +11,7 @@ import ProductCard from '../components/ProductCard'
 import Loader from "../components/Loader"
 import "../css/page.css"
 import MetaData from '../components/MetaData';
+import { handleLink } from '../utils/helperFuction';
 
 const Products = () => {
 
@@ -34,6 +35,7 @@ const Products = () => {
   }
 
   useEffect(() => {
+    handleLink()
     dispatch(fetchProducts({ keyword, currentPage, category }))
   }, [dispatch, keyword, currentPage, category])
 
