@@ -11,7 +11,7 @@ const Register = () => {
   const [inputdata, setInput] = useState({ name: "", phone: "", email: "", password: "" })
   const [errordata, setError] = useState({ email: "", password: "", other: "" })
 
-  const { user, isLoading, isAuthenticated, error } = useSelector(state => state.user)
+  const { isLoading, isAuthenticated, error } = useSelector(state => state.user)
 
   const dispatch = useDispatch()
 
