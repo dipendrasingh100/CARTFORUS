@@ -10,7 +10,9 @@ const ProductCard = ({ product }) => {
         <Link to={`/product/${product._id}`}>
             <div className='productCard'>
                 <img src={product.images[0].replace(/128/g, "416")} alt="mobile" />
-                <p>{product.title}</p>
+                <div className='p-title'>
+                    <p>{product.title}</p>
+                </div>
                 <div className='p-rating-cont'>
                     <ReactStars {...reactStarsOptions} value={product.rating} />
                     <span>256 Reviews</span>

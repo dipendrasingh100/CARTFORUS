@@ -32,12 +32,25 @@
     align-items: center;
 }
 
-.cart-container>span {
-    margin-left: 10px;
+.cart-container{
+    position: relative;
 }
 
-.cart-container a{
-    text-decoration: none;
+.cart-container>span {
+    position: absolute;
+    background-color: #d34e4e;
+    color: #fff;
+    font-size: 0.7rem;
+    border-radius: 50%;
+    height: 18px;
+    width: 18px;
+    text-align: center;
+    top: -10px;
+    right: -8px;
+}
+
+
+.cart-container svg{
     color: #264653;
 }
 

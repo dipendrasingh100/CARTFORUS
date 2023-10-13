@@ -18,6 +18,10 @@
     /* padding: 10px; */
 }
 
+.product-sl-cont a{
+   color: black;
+} 
+
 .product-card:first-child {
     margin-left: 10px;
 }

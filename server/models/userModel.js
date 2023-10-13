@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose")
+const { Schema, model, default: mongoose } = require("mongoose")
 const validator = require("validator")
 
 const userSchema = new Schema({
@@ -23,6 +23,13 @@ const userSchema = new Schema({
         maxLength: [10, "Mobile Number should be of 10 digit only"],
         minLength: [10, "Mobile Number should be of 10 digit only"]
     },
+    cart: [{
+        productId: {
+            type: Schema.Types.ObjectId,
+            ref: "Product"
+        },
+        quantity: { type: Number }
+    }],
     createdAt: {
         type: Date,
         default: Date.now,

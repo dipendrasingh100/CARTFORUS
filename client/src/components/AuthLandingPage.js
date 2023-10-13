@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-// import { logout } from '../app/userSlice'
+import { logout } from '../app/userSlice'
 import NotFound from '../pages/NotFound'
 import Register from './Register'
 import Login from "./Login"
-import validateToken from '../utils/decodeToken'
-import "../css/auth.css"
 import MetaData from './MetaData'
-import { logout } from '../app/userSlice'
+import "../css/auth.css"
 
 
 const AuthLandingPage = () => {
@@ -18,14 +16,9 @@ const AuthLandingPage = () => {
     const [status, setStatus] = useState(true)
 
     useEffect(() => {
-        const { loggedin, } = validateToken()
-
         if (auth === 'logout') {
-            localStorage.removeItem('token');
             dispatch(logout())
-            // navigate('/')
-        } else if (loggedin === 1) {
-            navigate('/');
+            navigate('/')
         } else {
             setStatus(auth === 'login');
         }

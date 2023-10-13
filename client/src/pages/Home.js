@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ImageSlider from '../components/ImageSlider'
 import ProductSlider from '../components/ProductSlider'
 import MetaData from '../components/MetaData'
+import { useDispatch, useSelector } from 'react-redux'
+import { featuredProducts } from '../app/productSlice'
+import Loader from '../components/Loader'
 
 const Home = () => {
+  const dispatch = useDispatch()
+  const { isLoading, featured, topdeals } = useSelector(state => state.products)
+
+  useEffect(() => {
+    dispatch(featuredProducts())
+  }, [dispatch])
 
   return (
     <>
@@ -13,15 +22,20 @@ const Home = () => {
 
         <div className="p-container">
           <p className='p-bar-title'>Featured Products</p>
-          <ProductSlider />
+          {
+            isLoading ?
+              <Loader />
+              : <ProductSlider data={featured} />
+          }
         </div>
+
         <div className="p-container">
-          <p className='p-bar-title'>Best of Electronics</p>
-          <ProductSlider />
-        </div>
-        <div className="p-container">
-          <p className='p-bar-title'>Deal of the Day</p>
-          <ProductSlider />
+          <p className='p-bar-title'>Top Deals</p>
+          {
+            isLoading ?
+              <Loader />
+              : <ProductSlider data={topdeals} />
+          }
         </div>
       </div>
     </>

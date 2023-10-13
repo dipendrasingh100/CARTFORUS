@@ -168,12 +168,23 @@ const getAllProducts = asyncHandler(async (req, res, next) => {
 const getProductDetails = asyncHandler(async (req, res, next) => {
     const product_id = req.params.id
 
-    const product = await Product.findById(product_id)
+    let product = await Product.findById(product_id)
     if (!product) {
         return next(new ErrorHandler(`Product not found!`, 404))
     }
 
+    let filterp = [...new Set(product.images)]
+    product.images = filterp
+
     res.status(200).json({ success: true, product })
 })
 
-module.exports = { getAllProducts, createProduct, getProductDetails };
+
+//Get: Featured products
+const getFeatured = asyncHandler(async (req, res, next) => {
+    const featured = await Product.find({ "featured": true })
+    const deals = await Product.find({ "discount": { $gt: 50 } })
+    res.status(200).json({ success: true, featured, deals })
+})
+
+module.exports = { getAllProducts, createProduct, getProductDetails, getFeatured };

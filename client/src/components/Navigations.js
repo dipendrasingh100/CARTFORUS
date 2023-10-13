@@ -1,6 +1,6 @@
 import React from 'react'
-import "../css/nav.css"
 import { NavLink } from 'react-router-dom'
+import "../css/nav.css"
 
 const Navigations = ({burger}) => {
 

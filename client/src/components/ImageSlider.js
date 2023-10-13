@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import "../css/image-slider.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import "../css/image-slider.css"
 
 const images = [
     {

@@ -3,8 +3,9 @@ a {
 }
 
 .productCard {
-    width: 16vmax;
+    width: 210px;
     height: 30vmax;
+    min-height: 220px;
     display: flex;
     flex-direction: column;
     color: rgba(48, 48, 48);
@@ -33,10 +34,10 @@ a {
     margin-left: 1vmax;
 }
 
-.productCard>p {
-    height: 3.5vmax;
+.productCard p {
+    height: 45px;
     text-decoration: none;
-    font-size: 1.2vmax;
+    font-size: 1rem;
     margin: 1vmax 0.5vmax;
     margin-bottom: 0;
     display: -webkit-box;
@@ -46,20 +47,24 @@ a {
 }
 
 .discPrice {
-    color: brown ;
-    font-size: 1vmax;
+    color: brown;
+    font-size: 1rem;
 }
 
-.actPrice{
+.actPrice {
     text-decoration: line-through;
 }
 
-.productCard .discount{
+.p-rating-cont>span, .actPrice{
+    font-size: 0.8rem;
+}
+
+.productCard .discount {
     padding: 0 !important;
 }
 
 
-.productCard .p-price-cont{
+.productCard .p-price-cont {
     margin: 0.5vmax;
     align-items: center;
 }
@@ -70,8 +75,20 @@ a {
 }
 
 @media screen and (max-width: 600px) {
-    .productCard>p {
-        font-size: 1.7vmax;
+    .productCard {
+        width: 40vmax;
+        height: 300px;
+        margin: 1vmax 0;
+        align-items: center;
+    }
+
+    .productCard>img {
+        width: 20vmax;
+    }
+
+    .productCard p {
+        font-size: 0.9rem;
+        height: 42px;
     }
 
     .productCard>div {
@@ -85,7 +102,11 @@ a {
 
     .productCard>div>span {
         margin: 0 0.5vmax;
-        font-size: 1vmax;
+        font-size: 1.5vmax;
+    }
+    
+    .discPrice{
+        font-size: 2vmax !important;
     }
 
 }

@@ -3,7 +3,7 @@ import React from 'react'
 const WhishList = () => {
   return (
     <div>
-      WhishList
+      <h1>Coming Soon</h1>
     </div>
   )
 }

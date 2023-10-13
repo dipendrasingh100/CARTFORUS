@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
-import { useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { changeSize } from '../utils/imageSizeModifier'
@@ -9,12 +9,17 @@ import { toastOptions } from '../utils/constants'
 import "../css/product_detail.css"
 import Loader from './Loader';
 import MetaData from './MetaData';
+import { addItemToCart } from '../app/userSlice';
+import { handleLink } from '../utils/helperFuction';
 
 
 const ProductDetails = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const location = useLocation()
     const { product, isLoading, error } = useSelector(state => state.productDetails)
+    const { isAuthenticated, isLoading: userLoading, user } = useSelector(state => state.user)
 
     const [quantity, setQuantity] = useState(1)
 
@@ -22,6 +27,7 @@ const ProductDetails = () => {
 
 
     useEffect(() => {
+        handleLink()
         dispatch(fetchProductDetails(id))
     }, [dispatch, id])
 
@@ -33,11 +39,25 @@ const ProductDetails = () => {
 
     if (error) {
         toast.error(error, toastOptions);
-        return (
-            <ToastContainer />
-        )
     }
 
+    const increaseQuantity = () => {
+        setQuantity(quantity >= 1 ? quantity + 1 : 1)
+    }
+    const decreaseQuantity = () => {
+        setQuantity(quantity > 1 ? quantity - 1 : 1)
+    }
+    const handleCart = () => {
+        if (isAuthenticated) {
+            dispatch(addItemToCart({ uid: user._id, productId: id, quantity }))
+            toast.success("Item successfully added in cart", toastOptions);
+
+        } else {
+            console.log("inside else");
+            // toast.error("You need to login first", toastOptions);
+            navigate("/account/login", { state: { from: location } })
+        }
+    }
 
     const handleThumb = (img) => {
         setTimg(product && product.images.length > 0 ? changeSize(img, 416, 416) : null)
@@ -93,10 +113,11 @@ const ProductDetails = () => {
                                 </div>
 
                                 <div className="addtocart">
-                                    <button className='btn' onClick={() => setQuantity(quantity >= 1 ? quantity + 1 : 1)}>+</button>
-                                    <input type="number" name="" id="" value={quantity} onChange={(e) => setQuantity(Number(e.target.value) >= 1 ? Number(e.target.value) : 1)} />
-                                    <button className='btn' onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}>-</button>
-                                    <button className='atc'>ADD TO CART</button>
+                                    <button className='btn' onClick={decreaseQuantity}>-</button>
+                                    <input type="number" readOnly value={quantity} />
+                                    <button className='btn' onClick={increaseQuantity}>+</button>
+
+                                    <button className='atc' onClick={handleCart}>{userLoading && <Loader />}ADD TO CART</button>
                                 </div>
 
                                 <div className="additional-cont">
@@ -122,6 +143,7 @@ const ProductDetails = () => {
                             </div>
                         </div>
                     </div>}
+            <ToastContainer />
         </>
     )
 }

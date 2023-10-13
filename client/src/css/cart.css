@@ -1,0 +1,159 @@
+.p-sub-cont {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.cart-left {
+    width: 70vmax;
+    padding: 2vmax;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.cart-left>h2 {
+    margin-bottom: 1vmax;
+}
+
+.cart-right {
+    padding: 2vmax;
+    width: 20vmax;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.p-cont {
+    display: flex;
+    gap: 3vmax;
+    margin-top: 3vmax;
+}
+
+.p-cont .img-cont {
+    height: 100%;
+    margin: auto 0;
+}
+
+.cart .dis-p {
+    font-size: 1.5vmax;
+}
+
+.cart .act-p,
+.cart .discount {
+    font-size: 1vmax;
+}
+
+.p-cont .addtocart input {
+    width: 3vmax;
+    height: 2.4vmax;
+    border: none;
+    background-color: #edeaea;
+}
+
+.p-cont .addtocart .btn {
+    padding: 0.3vmax 0.8vmax
+}
+
+.p-botton {
+    display: flex;
+    align-items: center;
+    gap: 2vmax;
+    margin-top: 10px;
+}
+
+.p-botton .addtocart {
+    margin: 0;
+}
+
+.mid a {
+    color: black;
+}
+
+.p-botton span {
+    color: tomato;
+    cursor: pointer;
+}
+
+.p-botton span:hover {
+    color: rgb(248, 68, 36);
+}
+
+.total,
+.items {
+    display: flex;
+    margin: 2vmax 0;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total span:first-child {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.place-order:focus {
+    box-shadow: none;
+}
+
+
+@media screen and (max-width:500px) {
+    .p-sub-cont {
+        flex-direction: column;
+    }
+
+    .p-left-cont {
+        width: 100%;
+    }
+
+    .thumb-container {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .all-images {
+        display: -webkit-inline-box;
+        overflow-y: unset;
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    .main-image {
+        width: 82%;
+        height: 340px;
+    }
+
+    .main-image img {
+        object-fit: contain;
+    }
+
+    .p-title {
+        font-size: 1.2rem;
+    }
+
+    .p-right-cont {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .cart-left {
+        width: 100%;
+    }
+
+    .cart-right {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .mid a span,
+    .p-botton span {
+        font-size: 0.8rem;
+    }
+
+    .cart .dis-p {
+        font-size: 0.8rem;
+    }
+
+    .p-cont .addtocart input {
+        height: 28px;
+    }
+
+    .img-cont img{
+        width: 75px;
+    }
+}

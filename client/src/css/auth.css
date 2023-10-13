@@ -146,7 +146,7 @@
 }
 
 .center {
-    justify-content: center;
+    justify-content: center !important;
     align-items: center;
 }
 
@@ -156,4 +156,20 @@
 
 .ft-2 {
     font-size: 2rem;
+}
+
+@media screen and (max-width:500px) {
+    .m-container {
+        flex-direction: column-reverse;
+        height: 560px !important;
+    }
+
+    .banner {
+        width: 100%;
+    }
+
+    .m-container>div:last-child {
+        width: 100%;
+    }
+
 }

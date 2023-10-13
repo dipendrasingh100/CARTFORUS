@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import Navigations from './Navigations'
@@ -9,6 +10,7 @@ import logo from "../assets/logo/png/logo-no-background.png"
 import "../css/header.css"
 
 const Header = () => {
+    const { user } = useSelector(state => state.user)
     return (
         <header>
             <div className="head-container">
@@ -20,11 +22,12 @@ const Header = () => {
                 <Search />
                 <div className="user-main">
                     <User />
-                    <div className="cart-container">
-                        <Link to='/user/cart'>
+                    <Link to='/user/cart'>
+                        <div className="cart-container">
+                            <span>{user ? user?.cart?.length : 0}</span>
                             <FontAwesomeIcon icon={faCartShopping} size='lg' />
-                        </Link>
-                    </div>
+                        </div>
+                    </Link>
                 </div>
             </div>
             <Navigations />

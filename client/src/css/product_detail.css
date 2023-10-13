@@ -71,6 +71,7 @@
 
 .addtocart input{
     text-align: center;
+    outline: none;
     width: 4vmax;
     height: 40px;
     border: 1px solid ;

@@ -18,8 +18,7 @@ const Login = () => {
   const [inputdata, setInput] = useState({ email: "", password: "" })
   const [errordata, setError] = useState({ email: "", password: "" })
 
-  const [showToast, setShowToast] = useState(false)
-  const { user, isLoading, isAuthenticated, error } = useSelector(state => state.user)
+  const { isLoading, isAuthenticated, error } = useSelector(state => state.user)
 
   const from = location.state?.from?.pathname || "/"
 
@@ -29,24 +28,21 @@ const Login = () => {
 
     if (checkEmail) {
       dispatch(login(inputdata))
-      console.log(error);
     } else {
       setError({ ...errordata, email: "please provide a valid email address" })
     }
-    
+
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     if (error) {
       toast.error(error, toastOptions);
-      setShowToast(true)
-      // dispatch(clearError())
+      dispatch(clearError())
     }
-
     if (isAuthenticated) {
       navigate(from)
     }
-  },[dispatch, error, from, isAuthenticated, navigate])
+  }, [dispatch, error, from, isAuthenticated, navigate])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -59,6 +55,7 @@ const Login = () => {
 
   return (
     <>
+      <ToastContainer />
       {isLoading
         ? <Loader />
         : <div className='login-form'>
@@ -79,7 +76,6 @@ const Login = () => {
             </div>
           </form>
 
-          {showToast && <ToastContainer />}
         </div>}
     </>
   )
