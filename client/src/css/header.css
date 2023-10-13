@@ -12,6 +12,7 @@
     top: 0;
     z-index: 10;
     width: 100%;
+    max-width: 1440px;
     background-color: #fff;
 }
 

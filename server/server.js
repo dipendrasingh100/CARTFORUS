@@ -10,7 +10,7 @@ require("dotenv").config()
 
 const app = express()
 app.use(cors({
-    origin: ["https://cartforus.netlify.app/"],
+    origin: ["https://carforus.netlify.app", "http://localhost:3000"],
     credentials: true
 }))
 app.use(cookieParser())
