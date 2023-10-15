@@ -12,3 +12,7 @@
     justify-content: center;
     margin: 5vmax;
 }
+
+.loading{
+    height: 50vh !important;
+}

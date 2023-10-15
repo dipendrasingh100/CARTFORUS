@@ -53,7 +53,6 @@ const ProductDetails = () => {
             toast.success("Item successfully added in cart", toastOptions);
 
         } else {
-            console.log("inside else");
             // toast.error("You need to login first", toastOptions);
             navigate("/account/login", { state: { from: location } })
         }
@@ -117,7 +116,7 @@ const ProductDetails = () => {
                                     <input type="number" readOnly value={quantity} />
                                     <button className='btn' onClick={increaseQuantity}>+</button>
 
-                                    <button className='atc' onClick={handleCart}>{userLoading && <Loader />}ADD TO CART</button>
+                                    <button className='atc' onClick={handleCart}>{userLoading ? <Loader /> : "ADD TO CART"}</button>
                                 </div>
 
                                 <div className="additional-cont">

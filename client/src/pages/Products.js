@@ -53,7 +53,7 @@ const Products = () => {
       <h6 className=''>Showing {currentPage === 1 ? (count === 0 ? 0 : 1) : (resultPerPage * currentPage) - 4}-{count < resultPerPage ? count : resultPerPage * currentPage} of {count} results</h6>
       {
         isLoading
-          ? <Loader />
+          ? <Loader args="products"/>
           : <>
             <div className="p-card-container">
               {

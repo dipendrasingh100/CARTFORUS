@@ -6,7 +6,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 
 const Navigations = () => {
     const navigate = useNavigate()
-    const handleClick = (category,brand) => {
+    const handleClick = (category, brand) => {
         navigate(`/products/${category}/${brand}`)
     }
     return (
@@ -20,27 +20,35 @@ const Navigations = () => {
                         </NavLink>
                         <ul className='sub-category'>
                             <li onClick={() => handleClick("mobile", "mi")}>MI</li>
-                            <li onClick={() => handleClick("mobile","realme")}>Realme</li>
-                            <li onClick={() => handleClick("mobile","apple")}>Apple</li>
-                            <li onClick={() => handleClick("mobile","oneplus")}>Oneplus</li>
+                            <li onClick={() => handleClick("mobile", "realme")}>Realme</li>
+                            <li onClick={() => handleClick("mobile", "apple")}>Apple</li>
+                            <li onClick={() => handleClick("mobile", "oneplus")}>Oneplus</li>
                         </ul>
                     </li>
-                    <li>
+                    <li className='cat-cont'>
                         <NavLink to='/products/laptop' className={({ isActive }) => (isActive ? "show-border" : "")}>
                             Laptops
+                            <FontAwesomeIcon icon={faAngleDown} size="xs" style={{ color: "#2A9D8F", }} />
                         </NavLink>
+                        <ul className='sub-category'>
+                            <li onClick={() => handleClick("laptop", "hp")}>HP</li>
+                            <li onClick={() => handleClick("laptop", "acer")}>Acer</li>
+                            <li onClick={() => handleClick("laptop", "apple")}>Apple</li>
+                            <li onClick={() => handleClick("laptop", "lenovo")}>Lenovo</li>
+                            <li onClick={() => handleClick("laptop", "msi")}>MSI</li>
+                        </ul>
                     </li>
-                    <li>
+                    <li className='cat-cont'>
                         <NavLink to='/products/camera' className={({ isActive }) => (isActive ? "show-border" : "")}>
                             Cameras
                         </NavLink>
                     </li>
-                    <li>
+                    <li className='cat-cont'>
                         <NavLink to='/products/accessories' className={({ isActive }) => (isActive ? "show-border" : "")}>
                             Accessories
                         </NavLink>
                     </li>
-                    <li>
+                    <li className='cat-cont'>
                         <NavLink to='/products/book' className={({ isActive }) => (isActive ? "show-border" : "")}>
                             Books
                         </NavLink>

@@ -6,7 +6,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 
 
 const Hamburger = ({ setIsRotated, isRotated }) => {
-    const [active, setActive] = useState(false)
+    const [active, setActive] = useState(0)
     const navigate = useNavigate()
     const handleClick = (category, brand) => {
         setIsRotated(false)
@@ -26,8 +26,8 @@ const Hamburger = ({ setIsRotated, isRotated }) => {
                         <NavLink to='/products/mobile' className={({ isActive }) => (isActive ? "show-border" : "")} onClick={() => setIsRotated(false)}>
                             Mobiles
                         </NavLink>
-                        <FontAwesomeIcon icon={faAngleDown} size="xs" style={{ color: "#2A9D8F", }} onClick={() => setActive(!active)} />
-                        <ul className={`sub-category ${active && "disp"}`}>
+                        <FontAwesomeIcon icon={faAngleDown} size="xs" style={{ color: "#2A9D8F", }} onClick={() => active === 1 ? setActive(0) : setActive(1)} />
+                        <ul className={`sub-category ${active === 1 && "disp"}`}>
                             <li onClick={() => handleClick("mobile", "mi")}>MI</li>
                             <li onClick={() => handleClick("mobile", "realme")}>Realme</li>
                             <li onClick={() => handleClick("mobile", "apple")}>Apple</li>
@@ -35,9 +35,17 @@ const Hamburger = ({ setIsRotated, isRotated }) => {
                         </ul>
                     </li>
                     <li className='cat-cont'>
-                        <NavLink to='/products/laptop' className={({ isActive }) => (isActive ? "show-border" : "")} onClick={() => setIsRotated(false)}>
+                        <NavLink to='/products/laptop' className={({ isActive }) => (isActive ? "show-border" : "")}>
                             Laptops
+                            <FontAwesomeIcon icon={faAngleDown} size="xs" style={{ color: "#2A9D8F", }} onClick={() => active === 2 ? setActive(0) : setActive(2)} />
                         </NavLink>
+                        <ul className={`sub-category ${active === 2 && "disp"}`}>
+                            <li onClick={() => handleClick("laptop", "hp")}>HP</li>
+                            <li onClick={() => handleClick("laptop", "acer")}>Acer</li>
+                            <li onClick={() => handleClick("laptop", "apple")}>Apple</li>
+                            <li onClick={() => handleClick("laptop", "lenovo")}>Lenovo</li>
+                            <li onClick={() => handleClick("laptop", "msi")}>MSI</li>
+                        </ul>
                     </li>
                     <li className='cat-cont'>
                         <NavLink to='/products/camera' className={({ isActive }) => (isActive ? "show-border" : "")} onClick={() => setIsRotated(false)}>
