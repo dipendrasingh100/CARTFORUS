@@ -10,6 +10,8 @@ export const login = createAsyncThunk('login', async ({ email, password }, { rej
             withCredentials: true,
             crossDomain: true
         });
+        //set cookie
+        document.cookie = `jwt=${data.token}`;
         return data
     } catch (error) {
         return rejectWithValue(error.response.data.message)
