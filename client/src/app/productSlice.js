@@ -1,13 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import server from "../host";
 
-export const fetchProducts = createAsyncThunk("fetchProducts", async ({ keyword = "", currentPage = 1, category }, { rejectWithValue }) => {
+export const fetchProducts = createAsyncThunk("fetchProducts", async ({ keyword = "", currentPage = 1, category, brand }, { rejectWithValue }) => {
     try {
 
         let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}`
 
         if (category) {
             link += `&category=${category}`;
+        }
+        if (brand) {
+            link += `&brand=${brand}`;
         }
         const { data } = await server.get(link)
         return data

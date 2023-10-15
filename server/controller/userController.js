@@ -59,6 +59,7 @@ const logout = (req, res) => {
     })
 }
 
+//Forgot password
 const resetpassword = asyncHandler(async (req, res, next) => {
     const { email } = req.body
 
@@ -92,8 +93,10 @@ const resetpassword = asyncHandler(async (req, res, next) => {
     }
 })
 
+//Password reset
 const createNewPassword = asyncHandler(async (req, res, next) => {
     const { token } = req.params
+    const { password, confirmPassword } = req.body
 
     const resetPasswordToken = crypto
         .createHash("sha256")
@@ -109,11 +112,11 @@ const createNewPassword = asyncHandler(async (req, res, next) => {
         return next(new ErrorHandler("Link Expired", 403))
     }
 
-    if (req.body.password !== req.body.confirmPassword) {
+    if (password !== confirmPassword) {
         return next(new ErrorHandler("Password doesn't match"), 500)
     }
 
-    user.password = req.body.password
+    user.password = await bcrypt.hash(password, 10)
     user.resetPasswordExpire = undefined
     user.resetPasswordToken = undefined
 

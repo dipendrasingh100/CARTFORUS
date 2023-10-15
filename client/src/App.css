@@ -8,3 +8,9 @@ main{
     min-height: 27.2vh;
     /* background-color: #a1a1a14d; */
 }
+
+@media screen and (max-width:500px){
+    main{
+        margin-top: 61px;    
+    }
+}

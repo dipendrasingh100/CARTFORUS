@@ -142,7 +142,7 @@ const createProduct = asyncHandler(async (req, res) => {
 const getAllProducts = asyncHandler(async (req, res, next) => {
     const resultPerPage = 5
     const productCount = await Product.countDocuments();
-
+    console.log(req.query)
     const apiFeature = new ApiFeatures(Product.find(), req.query)
         .search()
         .filter();

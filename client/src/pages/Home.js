@@ -5,12 +5,14 @@ import MetaData from '../components/MetaData'
 import { useDispatch, useSelector } from 'react-redux'
 import { featuredProducts } from '../app/productSlice'
 import Loader from '../components/Loader'
+import { handleLink } from '../utils/helperFuction'
 
 const Home = () => {
   const dispatch = useDispatch()
   const { isLoading, featured, topdeals } = useSelector(state => state.products)
 
   useEffect(() => {
+    handleLink()
     dispatch(featuredProducts())
   }, [dispatch])
 

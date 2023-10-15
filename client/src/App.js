@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { Route, Routes } from "react-router-dom"
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { loadUser } from './app/userSlice'
+import { clearError, loadUser } from './app/userSlice'
 import AuthLandingPage from './components/AuthLandingPage'
 import ProductDetails from './components/ProductDetails'
 import RequireAuth from './components/RequireAuth'
@@ -24,10 +24,17 @@ import ResetPassword from './components/ResetPassword.js'
 
 const App = () => {
   const dispatch = useDispatch()
+  const { error } = useSelector(state => state.user)
 
   useEffect(() => {
     dispatch(loadUser())
   }, [dispatch])
+
+  useEffect(() => {
+    if (error==="Please Login") {
+      dispatch(clearError())
+    }
+  }, [dispatch, error])
 
   return (
     <div>
@@ -40,6 +47,7 @@ const App = () => {
           <Route path='/password/reset/:token' element={<ResetPassword />} />
           <Route path='/products' element={<Products />} />
           <Route path='/products/:category' element={<Products />} />
+          <Route path='/products/:category/:brand' element={<Products />} />
           <Route path='/search' element={<Products />} />
           <Route path='/product/:id' element={<ProductDetails />} />
           <Route element={<RequireAuth />}>

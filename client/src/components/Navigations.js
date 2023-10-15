@@ -1,36 +1,53 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import "../css/nav.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 
-const Navigations = ({ burger }) => {
-
+const Navigations = () => {
+    const navigate = useNavigate()
+    const handleClick = (category,brand) => {
+        navigate(`/products/${category}/${brand}`)
+    }
     return (
-        <nav>
-            <div className={`navbar ${burger && "mob-nav"}`}>
+        <>
+            <div className='navbar'>
                 <ul>
-                    <NavLink to='/products/mobile' className={({ isActive }) => (isActive ? "show-border" : "")}>
-                        <li>Mobiles</li>
-                    </NavLink>
-                    {/* <ul className='sub-category'>
-                        <li>MI</li>
-                        <li>Realme</li>
-                        <li>Apple</li>
-                    </ul> */}
-                    <NavLink to='/products/laptop' className={({ isActive }) => (isActive ? "show-border" : "")}>
-                        <li>Laptops</li>
-                    </NavLink>
-                    <NavLink to='/products/camera' className={({ isActive }) => (isActive ? "show-border" : "")}>
-                        <li>Cameras</li>
-                    </NavLink>
-                    <NavLink to='/products/accessories' className={({ isActive }) => (isActive ? "show-border" : "")}>
-                        <li>Accessories</li>
-                    </NavLink>
-                    <NavLink to='/products/book' className={({ isActive }) => (isActive ? "show-border" : "")}>
-                        <li>Books</li>
-                    </NavLink>
+                    <li className='cat-cont'>
+                        <NavLink to='/products/mobile' className={({ isActive }) => (isActive ? "show-border" : "")}>
+                            Mobiles
+                            <FontAwesomeIcon icon={faAngleDown} size="xs" style={{ color: "#2A9D8F", }} />
+                        </NavLink>
+                        <ul className='sub-category'>
+                            <li onClick={() => handleClick("mobile", "mi")}>MI</li>
+                            <li onClick={() => handleClick("mobile","realme")}>Realme</li>
+                            <li onClick={() => handleClick("mobile","apple")}>Apple</li>
+                            <li onClick={() => handleClick("mobile","oneplus")}>Oneplus</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <NavLink to='/products/laptop' className={({ isActive }) => (isActive ? "show-border" : "")}>
+                            Laptops
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/products/camera' className={({ isActive }) => (isActive ? "show-border" : "")}>
+                            Cameras
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/products/accessories' className={({ isActive }) => (isActive ? "show-border" : "")}>
+                            Accessories
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/products/book' className={({ isActive }) => (isActive ? "show-border" : "")}>
+                            Books
+                        </NavLink>
+                    </li>
                 </ul>
             </div>
-        </nav>
+        </>
     )
 }
 

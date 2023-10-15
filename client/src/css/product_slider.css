@@ -70,10 +70,13 @@
 }
 
 
-.p-container {}
+.react-multi-carousel-item{
+    display: flex;
+    justify-content: center;
+}
 
 @media screen and (max-width:500px) {
-    /* .react-multi-carousel-item {
-        margin: 8.5vmax;
-    } */
+    .p-bar-title{
+        font-size: 0.8rem;
+    }
 }

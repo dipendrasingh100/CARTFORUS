@@ -13,6 +13,7 @@ const productSchema = new mongoose.Schema({
     category: { type: String, required: [true, "Please enter product category"] },
     stock: { type: Number, default: 10 },
     numofreviews: { type: Number, default: 0 },
+    brand: String,
     reviews: [
         {
             name: {

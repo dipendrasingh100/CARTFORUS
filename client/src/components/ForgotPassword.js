@@ -22,7 +22,6 @@ const ForgotPassword = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const checkEmail = verifyEmail(email)
-        console.log(checkEmail);
         if (checkEmail) {
             dispatch(forgotPassword(email))
             setEmail("")

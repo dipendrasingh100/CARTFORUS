@@ -23,7 +23,7 @@ const Products = () => {
   // const { keyword } = useParams()
 
   //if keyword then category will be undefined
-  const { category } = useParams()
+  const { category, brand } = useParams()
 
   const dispatch = useDispatch()
   const { products, isLoading, error, resultPerPage, filteredProductsCount } = useSelector(state => state.products)
@@ -36,8 +36,8 @@ const Products = () => {
 
   useEffect(() => {
     handleLink()
-    dispatch(fetchProducts({ keyword, currentPage, category }))
-  }, [dispatch, keyword, currentPage, category])
+    dispatch(fetchProducts({ keyword, currentPage, category, brand }))
+  }, [dispatch, keyword, currentPage, category, brand])
 
   let count = filteredProductsCount;
 
