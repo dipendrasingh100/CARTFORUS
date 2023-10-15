@@ -20,7 +20,7 @@ const Cart = () => {
 
   useEffect(() => {
     if (error) {
-      window.location.reload()
+      // window.location.reload()
     }
   }, [error])
 
