@@ -7,7 +7,8 @@ export const login = createAsyncThunk('login', async ({ email, password }, { rej
     try {
         const { data } = await server.post(`/api/auth/login`, { email, password }, {
             headers: { 'Content-Type': 'application/json' },
-            withCredentials: true
+            withCredentials: true,
+            crossDomain: true
         });
         return data
     } catch (error) {
