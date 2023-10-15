@@ -7,11 +7,9 @@ export const login = createAsyncThunk('login', async ({ email, password }, { rej
     try {
         const { data } = await server.post(`/api/auth/login`, { email, password }, {
             headers: { 'Content-Type': 'application/json' },
-            withCredentials: true,
-            crossDomain: true
+            withCredentials: true
         });
-        //set cookie
-        document.cookie = `jwt=${data.token}`;
+        localStorage.setItem("token", data.token)
         return data
     } catch (error) {
         return rejectWithValue(error.response.data.message)
@@ -24,6 +22,7 @@ export const register = createAsyncThunk('register', async (userData, { rejectWi
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true
         });
+        localStorage.setItem("token", data.token)
         return data
     } catch (error) {
         return rejectWithValue(error.response.data.message)
@@ -32,27 +31,37 @@ export const register = createAsyncThunk('register', async (userData, { rejectWi
 
 export const loadUser = createAsyncThunk('loadUser', async (_, { rejectWithValue }) => {
     try {
-        const { data } = await server.get(`/api/auth/me`, { withCredentials: true });
+        const token = localStorage.getItem("token")
+        const { data } = await server.get(`/api/auth/me`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
         return data
     } catch (error) {
         return rejectWithValue(error.response.data.message)
     }
 })
 
-export const logout = createAsyncThunk('logout', async (_, { rejectWithValue }) => {
-    try {
-        const { data } = await server.get(`/api/auth/logout`, { withCredentials: true });
-        return data
-    } catch (error) {
-        return rejectWithValue(error.response.data.message)
-    }
-})
-
+// export const logout = createAsyncThunk('logout', async (_, { rejectWithValue }) => {
+//     try {
+//         const { data } = await server.get(`/api/auth/logout`, { withCredentials: true });
+//         return data
+//     } catch (error) {
+//         return rejectWithValue(error.response.data.message)
+//     }
+// })
 
 
 export const addItemToCart = createAsyncThunk('addItemToCart', async ({ uid, productId, quantity }, { rejectWithValue }) => {
     try {
-        const { data } = await server.post(`/api/auth/atc`, { uid, productId, quantity }, { withCredentials: true });
+        const token = localStorage.getItem("token")
+
+        const { data } = await server.post(`/api/auth/atc`, { uid, productId, quantity }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }, withCredentials: true
+        });
 
         return data
     } catch (error) {
@@ -62,7 +71,13 @@ export const addItemToCart = createAsyncThunk('addItemToCart', async ({ uid, pro
 
 export const removefromCart = createAsyncThunk('removefromCart', async ({ uid, oid }, { rejectWithValue }) => {
     try {
-        const { data } = await server.post(`/api/auth/rfc`, { uid, oid }, { withCredentials: true });
+        const token = localStorage.getItem("token")
+
+        const { data } = await server.post(`/api/auth/rfc`, { uid, oid }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }, withCredentials: true
+        });
 
         return data
     } catch (error) {
@@ -72,7 +87,13 @@ export const removefromCart = createAsyncThunk('removefromCart', async ({ uid, o
 
 export const increaseQuantity = createAsyncThunk('increaseQuantity', async ({ uid, oid }, { rejectWithValue }) => {
     try {
-        const { data } = await server.post(`/api/auth/increaseqnt`, { uid, oid }, { withCredentials: true });
+        const token = localStorage.getItem("token")
+
+        const { data } = await server.post(`/api/auth/increaseqnt`, { uid, oid }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }, withCredentials: true
+        });
 
         return data
     } catch (error) {
@@ -82,7 +103,13 @@ export const increaseQuantity = createAsyncThunk('increaseQuantity', async ({ ui
 
 export const decreaseQuantity = createAsyncThunk('decreaseQuantity', async ({ uid, oid }, { rejectWithValue }) => {
     try {
-        const { data } = await server.post(`/api/auth/decreaseqnt`, { uid, oid }, { withCredentials: true });
+        const token = localStorage.getItem("token")
+
+        const { data } = await server.post(`/api/auth/decreaseqnt`, { uid, oid }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }, withCredentials: true
+        });
 
         return data
     } catch (error) {
@@ -102,6 +129,10 @@ const userReducer = createSlice({
     reducers: {
         clearError: (state) => {
             state.error = null
+        },
+        logout: (state) => {
+            state.isAuthenticated = false
+            state.user = null
         },
         addToCart: (state, action) => {
             const item = action.payload
@@ -171,20 +202,20 @@ const userReducer = createSlice({
         })
 
         //---------- logout
-        builder.addCase(logout.pending, (state) => {
-            state.isLoading = true
-        });
+        // builder.addCase(logout.pending, (state) => {
+        //     state.isLoading = true
+        // });
 
-        builder.addCase(logout.fulfilled, (state, action) => {
-            state.isLoading = false
-            state.isAuthenticated = false
-            state.user = null
-        });
+        // builder.addCase(logout.fulfilled, (state, action) => {
+        //     state.isLoading = false
+        //     state.isAuthenticated = false
+        //     state.user = null
+        // });
 
-        builder.addCase(logout.rejected, (state, action) => {
-            state.isLoading = false
-            state.error = action.payload
-        })
+        // builder.addCase(logout.rejected, (state, action) => {
+        //     state.isLoading = false
+        //     state.error = action.payload
+        // })
 
         //---------- addItemToCart
         builder.addCase(addItemToCart.pending, (state) => {
@@ -250,4 +281,4 @@ const userReducer = createSlice({
 })
 
 export default userReducer.reducer
-export const { clearError, addToCart } = userReducer.actions
+export const { clearError, addToCart, logout } = userReducer.actions

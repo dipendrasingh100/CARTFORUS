@@ -1,5 +1,6 @@
 const { login, signup, logout, getUserDetails, addItemToCart, removeItemFromCart, increaseQuantity, decreaseQuantity, resetpassword, createNewPassword } = require("../controller/userController")
 const isAuthenticatedUser = require("../middleware/auth")
+const verifyToken = require("../middleware/tokenVarification")
 
 const userRouter = require("express").Router()
 
@@ -13,14 +14,14 @@ userRouter.post("/forgot_password", resetpassword)
 
 userRouter.put("/password/reset/:token", createNewPassword)
 
-userRouter.get('/me', isAuthenticatedUser, getUserDetails)
+userRouter.get('/me', verifyToken, getUserDetails)
 
-userRouter.post('/atc', isAuthenticatedUser, addItemToCart)
+userRouter.post('/atc', verifyToken, addItemToCart)
 
-userRouter.post('/rfc', isAuthenticatedUser, removeItemFromCart)
+userRouter.post('/rfc', verifyToken, removeItemFromCart)
 
-userRouter.post('/increaseqnt', isAuthenticatedUser, increaseQuantity)
+userRouter.post('/increaseqnt', verifyToken, increaseQuantity)
 
-userRouter.post('/decreaseqnt', isAuthenticatedUser, decreaseQuantity)
+userRouter.post('/decreaseqnt', verifyToken, decreaseQuantity)
 
 module.exports = userRouter

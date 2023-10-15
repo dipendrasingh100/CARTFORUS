@@ -4,7 +4,7 @@ class ApiFeatures {
     constructor(query, queryStr) {
         this.query = query
         this.queryStr = queryStr
-        console.log("Query - ", this.queryStr);
+        // console.log("Query - ", this.queryStr);
     }
 
     search() {
@@ -32,7 +32,7 @@ class ApiFeatures {
         //added $before lt, lte, gt, gte
         let queryStr = JSON.stringify(queryCopy);
         queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, (key) => `$${key}`)
-        console.log("Filter - ", JSON.parse(queryStr));
+        // console.log("Filter - ", JSON.parse(queryStr));
         this.query = this.query.find(JSON.parse(queryStr))
 
         return this

@@ -1,21 +1,24 @@
 const jwt = require("jsonwebtoken")
+const asyncHandler = require("express-async-handler")
+const ErrorHandler = require("../utils/errorHandler")
 
 //if token comes in each request header
 const verifyToken = (req, res, next) => {
     const header = req.headers.authorization
     if (header && header.startsWith("Bearer")) {
         const token = header.split(" ")[1]
-        jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+
+        jwt.verify(token, process.env.SECRET_KEY, asyncHandler(async (err, decoded) => {
             if (err) {
-                res.status(401)
-                throw new Error("Invalid token")
+                return next(new ErrorHandler("Session Expired Login Again"), 401)
             }
-            req.user = decoded
+            req.id = decoded.id
+            // req.user = await User.findById(decoded.id)
             next()
-        })
-    }else{
-        res.status(400)
-        throw new Error("Token Not Found")
+        }))
+
+    } else {
+        return next(new ErrorHandler("Please Login"), 401)
     }
 }
 

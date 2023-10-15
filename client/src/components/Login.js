@@ -32,7 +32,6 @@ const Login = () => {
     } else {
       setError({ ...errordata, email: "please provide a valid email address" })
     }
-
   }
 
   useEffect(() => {
