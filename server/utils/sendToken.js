@@ -5,13 +5,13 @@ const sendToken = (user, statusCode, res) => {
 
     //options for cookie
     const options = {
-        httpOnly: true,
-        secure: true,
         withCredentials: true,
         expires: new Date(
             Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
         ),
-        sameSite: 'none'
+        httpOnly: true,
+        domain: "https://carforus.onrender.com",
+        sameSite: "none",
     }
     res.cookie("jwt", token, options)
     res.status(statusCode).json({ success: true, token, user })
