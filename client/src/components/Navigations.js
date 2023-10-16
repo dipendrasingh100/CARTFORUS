@@ -19,9 +19,10 @@ const Navigations = () => {
                             <FontAwesomeIcon icon={faAngleDown} size="xs" style={{ color: "#2A9D8F", }} />
                         </NavLink>
                         <ul className='sub-category'>
-                            <li onClick={() => handleClick("mobile", "mi")}>MI</li>
-                            <li onClick={() => handleClick("mobile", "realme")}>Realme</li>
                             <li onClick={() => handleClick("mobile", "apple")}>Apple</li>
+                            <li onClick={() => handleClick("mobile", "mi")}>MI</li>
+                            <li onClick={() => handleClick("mobile", "moto")}>Motorola</li>
+                            <li onClick={() => handleClick("mobile", "realme")}>Realme</li>
                             <li onClick={() => handleClick("mobile", "oneplus")}>Oneplus</li>
                         </ul>
                     </li>
@@ -31,10 +32,10 @@ const Navigations = () => {
                             <FontAwesomeIcon icon={faAngleDown} size="xs" style={{ color: "#2A9D8F", }} />
                         </NavLink>
                         <ul className='sub-category'>
-                            <li onClick={() => handleClick("laptop", "hp")}>HP</li>
                             <li onClick={() => handleClick("laptop", "acer")}>Acer</li>
                             <li onClick={() => handleClick("laptop", "apple")}>Apple</li>
-                            <li onClick={() => handleClick("laptop", "lenovo")}>Lenovo</li>
+                            <li onClick={() => handleClick("laptop", "asus")}>Asus</li>
+                            <li onClick={() => handleClick("laptop", "hp")}>HP</li>
                             <li onClick={() => handleClick("laptop", "msi")}>MSI</li>
                         </ul>
                     </li>
@@ -49,8 +50,8 @@ const Navigations = () => {
                         </NavLink>
                     </li>
                     <li className='cat-cont'>
-                        <NavLink to='/products/book' className={({ isActive }) => (isActive ? "show-border" : "")}>
-                            Books
+                        <NavLink to='/products/sport' className={({ isActive }) => (isActive ? "show-border" : "")}>
+                            Sports
                         </NavLink>
                     </li>
                 </ul>
