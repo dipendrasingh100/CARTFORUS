@@ -144,7 +144,7 @@
     font-weight: 400;
 }
 
-.grid-3 ul a{
+.grid-3 ul a {
     text-decoration: none;
     color: #c8c8c8;
 
@@ -163,6 +163,10 @@
 .others {
     display: flex;
     gap: 2rem;
+}
+
+.others p {
+    color: #fff !important;
 }
 
 .contact-cont {
@@ -278,7 +282,8 @@
         font-size: 0.8rem;
     }
 
-    .flex h5, .sources{
+    .flex h5,
+    .sources {
         font-size: 0.8rem;
     }
 }

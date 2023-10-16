@@ -18,6 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./App.css"
 import ForgotPassword from './components/ForgotPassword'
 import ResetPassword from './components/ResetPassword.js'
+import Order from './components/Order'
 
 
 //can use lazy loading to improve the inital loading time
@@ -52,6 +53,7 @@ const App = () => {
           <Route path='/product/:id' element={<ProductDetails />} />
           <Route element={<RequireAuth />}>
             <Route path='/user/cart' element={<Cart />} />
+            <Route path='/user/order' element={<Order />} />
             <Route path='/user/whishlist' element={<WhishList />} />
           </Route>
           <Route path='*' element={<NotFound />} />

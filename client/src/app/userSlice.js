@@ -117,6 +117,22 @@ export const decreaseQuantity = createAsyncThunk('decreaseQuantity', async ({ ui
     }
 })
 
+export const removeCartItems = createAsyncThunk('removeCartItems', async (uid, { rejectWithValue }) => {
+    try {
+        const token = localStorage.getItem("token")
+
+        const { data } = await server.get(`/api/user/emptycart`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }, withCredentials: true
+        });
+
+        return data
+    } catch (error) {
+        return rejectWithValue(error.response.data.message)
+    }
+})
+
 
 const userReducer = createSlice({
     name: 'user',
@@ -274,6 +290,21 @@ const userReducer = createSlice({
         });
 
         builder.addCase(decreaseQuantity.rejected, (state, action) => {
+            state.isLoading = false
+            state.error = action.payload
+        })
+        //---------- removeCartItems
+        builder.addCase(removeCartItems.pending, (state) => {
+            state.isLoading = true
+        });
+
+        builder.addCase(removeCartItems.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isAuthenticated = true
+            state.user = action.payload.user
+        });
+
+        builder.addCase(removeCartItems.rejected, (state, action) => {
             state.isLoading = false
             state.error = action.payload
         })

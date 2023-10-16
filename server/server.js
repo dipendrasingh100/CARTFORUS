@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require("express")
 const cors = require("cors")
 const cookieParser = require('cookie-parser')
@@ -5,8 +6,9 @@ const userRouter = require("./routes/userRoutes")
 const productRouter = require("./routes/productRouter")
 const connectDatabase = require("./config/database")
 const errorMiddleware = require("./middleware/error")
+const orderRouter = require("./routes/orderRoutes")
+const userCartRouter = require("./routes/userCartRouter")
 
-require("dotenv").config()
 
 const app = express()
 app.use(cors({
@@ -28,7 +30,9 @@ connectDatabase()
 
 
 app.use("/api/auth", userRouter)
+app.use("/api/user", userCartRouter)
 app.use("/api/v1", productRouter)
+app.use("/api/v2", orderRouter)
 
 app.use(errorMiddleware)
 const PORT = process.env.PORT || 8000

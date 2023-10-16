@@ -131,7 +131,6 @@ const getUserDetails = asyncHandler(async (req, res, next) => {
     // const user = await User.findById(req.id);
     const user = await User.findById(req.id).populate("cart.productId");
 
-    console.log("request made to loaduser");
     res.status(200).json({
         success: true,
         user,
