@@ -244,6 +244,11 @@
         display: none;
     }
 
+    .subfooter-bottom {
+        padding: 15px 25px 7px 0;
+        font-size: 10px;
+    }
+
     .show {
         height: 210px !important;
         display: flex !important;

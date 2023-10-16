@@ -29,7 +29,7 @@ const Register = () => {
     } else {
       //Minimum eight characters, at least one letter and one number:
       if (!passwordCheck) {
-        setError({ ...errordata, password: "password must contain minimum eight characters, at least one letter and one number" })
+        setError({ ...errordata, password: "password must contain minimum eight characters, at least one special character and one number" })
       }
       if (!checkEmail) {
         setError({ ...errordata, email: "please provide a valid email address" })

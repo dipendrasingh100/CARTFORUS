@@ -79,7 +79,7 @@ const Footer = () => {
                                         <ul>
                                             <li>
                                                 <FontAwesomeIcon icon={faMapPin} size="lg" style={{ color: "#fa0000", }} />
-                                                <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga, temporibus</span>
+                                                <span>Plot # 53/19, Sector 31 Main Road, Near Housing Board Colony HSIIDC Apartments, Gurgaon, Haryana 122003</span>
                                             </li>
                                             <li>
                                                 <FontAwesomeIcon icon={faEnvelope} style={{ color: "#ffffff", }} />

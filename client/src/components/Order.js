@@ -19,10 +19,14 @@ const Order = () => {
                     </div > :
                     <div className='o-main-cont'>
                         <div className="address-cont">
-                            <span>Address</span>: Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus officiis, nisi minus nemo, neque autem molestias et,203130
+                            <span>Address</span>: Opp Patel Stadium, Jaipur Road, Ajmer, Rajasthan, 305001
+                            <br />
+                            <span>Mobile No</span>: 0145 243 2297
                         </div>
                         <hr />
                         <div className="payment-options">
+                            <div>Pay With :</div>
+                            <br />
                             <PaypalCheckoutButton setSuccess={setSuccess} />
                             <div>-------Or-------</div>
                             <button>Cash On Delivery</button>

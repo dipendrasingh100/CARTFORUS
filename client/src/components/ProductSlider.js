@@ -23,8 +23,16 @@ const ProductSlider = ({ data }) => {
             breakpoint: { max: 850, min: 464 },
             items: 3
         },
+        tablet2: {
+            breakpoint: { max: 850, min: 700 },
+            items: 2
+        },
+        tablet3: {
+            breakpoint: { max: 700, min: 470 },
+            items: 2
+        },
         mobile: {
-            breakpoint: { max: 464, min: 0 },
+            breakpoint: { max: 470, min: 0 },
             items: 1
         }
     };

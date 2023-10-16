@@ -15,7 +15,8 @@
 }
 
 .gif img{
-    width:300px;
+    width: 70%;
+    max-width:300px;
     margin: auto;
     display: block;
 }
@@ -121,7 +122,7 @@
 }
 
 
-@media screen and (max-width:500px) {
+@media screen and (max-width:900px) {
     .p-sub-cont {
         flex-direction: column;
     }
@@ -133,6 +134,7 @@
     .thumb-container {
         flex-direction: column-reverse;
         align-items: center;
+        min-width: 30vmax;
     }
 
     .all-images {
