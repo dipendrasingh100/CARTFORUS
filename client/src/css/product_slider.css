@@ -70,13 +70,91 @@
 }
 
 
-.react-multi-carousel-item{
+.react-multi-carousel-item {
     display: flex;
     justify-content: center;
 }
 
+.td-cont {
+    width: 100%;
+    margin-top: 40px;
+    position: relative;
+}
+
+.td-cont .td-text-cont {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5vmax;
+    margin-top: 1.5;
+}
+
+.td-text-cont>div:first-child {
+    font-weight: bold;
+    font-size: 2vmax;
+}
+
+.td-text-cont>div,
+.td-text-cont>button{
+    margin-top: 1vmax;
+}
+
+.td-text-cont button {
+    background-color: #264653;
+}
+
+button a{
+    color: #fff;
+}
+
+a:hover{
+    color: #fff;
+}
+
 @media screen and (max-width:500px) {
-    .p-bar-title{
+    .p-bar-title {
         font-size: 0.8rem;
+    }
+
+    .td-cont .td-text-cont{
+        font-size: 1.5vmin;
+    }
+
+    .td-text-cont>div:first-child {
+        font-weight: bold;
+        font-size: 1vmax;
+    }
+    
+    .td-text-cont>div,
+    .td-text-cont>button{
+        margin-top: 0.8vmin;
+    }
+
+    .td-text-cont button {
+        font-size: 1vmax;
+        padding: 5px 10px;
+    }
+}
+
+@media screen and (min-width:1400px){
+    .td-cont .td-text-cont {
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1vmax;
+    }
+    
+    .td-text-cont>div:first-child {
+        font-weight: bold;
+        font-size: 1.5vmax;
+    }
+    
+    .td-text-cont>div,
+    .td-text-cont>button{
+        margin-top: 1vmax;
     }
 }

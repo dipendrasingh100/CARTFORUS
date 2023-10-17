@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { featuredProducts } from '../app/productSlice'
 import Loader from '../components/Loader'
 import { handleLink } from '../utils/helperFuction'
+import hotdeal from "../assets/hotdeal.png"
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -29,6 +31,14 @@ const Home = () => {
               <Loader />
               : <ProductSlider data={featured} />
           }
+        </div>
+        <div className="p-container td-cont">
+          <img src={hotdeal} alt="topdeal" width='100%'/>
+          <div className="td-text-cont">
+              <div>HOT DEAL THIS WEEK</div>
+              <div>NEW COLLECTION UP TO 50% OFF</div>
+              <button><Link to='/products'>SHOP NOW</Link></button>
+          </div>
         </div>
 
         <div className="p-container">
