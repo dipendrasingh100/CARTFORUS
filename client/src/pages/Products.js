@@ -39,6 +39,10 @@ const Products = () => {
     dispatch(fetchProducts({ keyword, currentPage, category, brand }))
   }, [dispatch, keyword, currentPage, category, brand])
 
+  useEffect(()=>{
+    setCurrentPage(1)
+  },[category, brand])
+
   let count = filteredProductsCount;
 
   if (error) {

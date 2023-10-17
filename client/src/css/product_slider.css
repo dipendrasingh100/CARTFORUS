@@ -109,7 +109,7 @@ button a{
     color: #fff;
 }
 
-a:hover{
+button :hover{
     color: #fff;
 }
 

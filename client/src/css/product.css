@@ -17,6 +17,7 @@ a {
 
 .productCard>img {
     width: 14vmax;
+    max-height: 17.8vmax;
     margin: auto;
 }
 

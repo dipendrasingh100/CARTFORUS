@@ -1,13 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "../css/order.css"
 import PaypalCheckoutButton from './PaypalCheckoutButton'
 
 import { Link } from 'react-router-dom'
 import completion from "../assets/success.gif"
+import { useDispatch, useSelector } from 'react-redux'
+import { removeCartItems } from '../app/userSlice'
 
 
 const Order = () => {
     const [success, setSuccess] = useState(false)
+    const dispatch = useDispatch()
+    const { user } = useSelector(state => state.user)
+
+    useEffect(() => {
+        if (success) {
+            dispatch(removeCartItems(user._id))
+        }
+    }, [dispatch, success, user._id])
     return (
         <>
             {
@@ -29,7 +39,7 @@ const Order = () => {
                             <br />
                             <PaypalCheckoutButton setSuccess={setSuccess} />
                             <div>-------Or-------</div>
-                            <button>Cash On Delivery</button>
+                            <button onClick={() => setSuccess(true)}>Cash On Delivery</button>
                         </div>
                     </div>
             }

@@ -91,7 +91,7 @@ button {
     background-color: #E76F51;
 }
 
-.atc .loading{
+.atc .loading {
     height: 20% !important;
     background-color: #E76F51;
 }
@@ -133,6 +133,10 @@ button {
     border-radius: 3px;
 }
 
+.p-rating svg {
+    margin-left: 3px;
+}
+
 .p-price-cont {
     display: flex;
     gap: 10px;
@@ -165,7 +169,20 @@ button {
 
 .offers-cont ul li {
     font-size: 0.8rem;
+    list-style: none; /* Remove default list style */
+    padding-left: 25px; /* Adjust the padding to make room for the larger marker */
+    background: url("../assets/tag-solid.svg") no-repeat;
+    background-size: 20px 20px; /* Set the desired size of the marker */
 }
+
+
+/* .offers-cont li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    background-repeat: no-repeat;
+    background-image: url("../assets/tag-solid.svg");
+} */
 
 .pp-cont {
     margin: 20px 0;

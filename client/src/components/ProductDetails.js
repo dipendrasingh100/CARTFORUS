@@ -11,6 +11,9 @@ import Loader from './Loader';
 import MetaData from './MetaData';
 import { addItemToCart } from '../app/userSlice';
 import { handleLink } from '../utils/helperFuction';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+
 
 
 const ProductDetails = () => {
@@ -90,6 +93,7 @@ const ProductDetails = () => {
                                 </div>
                                 <div className="p-rating">
                                     {product?.rating}
+                                    <FontAwesomeIcon icon={faStar} size="xs" style={{color: "#ffffff",}} />
                                 </div>
                                 <div className="p-price-cont">
                                     <div className="dis-p">₹{product?.dis_price}</div>

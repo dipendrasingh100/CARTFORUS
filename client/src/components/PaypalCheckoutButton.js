@@ -1,12 +1,10 @@
 import React from 'react'
 import { PayPalButtons } from '@paypal/react-paypal-js'
 import server from '../host';
-import { useDispatch, useSelector } from 'react-redux';
-import { removeCartItems } from '../app/userSlice';
+import { useSelector } from 'react-redux';
 
 
 const PaypalCheckoutButton = ({ setSuccess }) => {
-    const dispatch = useDispatch()
     const { user } = useSelector(state => state.user)
 
     const createOrder = async (data, actions) => {
@@ -31,11 +29,11 @@ const PaypalCheckoutButton = ({ setSuccess }) => {
             });
 
             const orderData = data.data;
-            console.log("order data-------------", orderData);
+            // console.log("order data-------------", orderData);
 
 
             if (orderData.id) {
-                console.log("order id-", orderData.id);
+                // console.log("order id-", orderData.id);
                 return orderData.id;
             } else {
                 const errorDetail = orderData?.details?.[0];
@@ -61,7 +59,7 @@ const PaypalCheckoutButton = ({ setSuccess }) => {
             });
 
             const orderData = data.data;
-            console.log('on approve=================', orderData);
+            // console.log('on approve=================', orderData);
             // Three cases to handle:
             //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
             //   (2) Other non-recoverable errors -> Show a failure message
@@ -81,18 +79,17 @@ const PaypalCheckoutButton = ({ setSuccess }) => {
             } else {
                 // (3) Successful transaction -> Show confirmation or thank you message
                 // Or go to another URL:  actions.redirect('thank_you.html');
-                const transaction =
-                    orderData?.purchase_units?.[0]?.payments?.captures?.[0] ||
-                    orderData?.purchase_units?.[0]?.payments?.authorizations?.[0];
-                console.log(
-                    `Transaction ${transaction.status}: ${transaction.id}<br><br>See console for all available details`,
-                );
-                console.log(
-                    "Capture result",
-                    orderData,
-                    JSON.stringify(orderData, null, 2),
-                );
-                dispatch(removeCartItems(user._id))
+                // const transaction =
+                //     orderData?.purchase_units?.[0]?.payments?.captures?.[0] ||
+                //     orderData?.purchase_units?.[0]?.payments?.authorizations?.[0];
+                // console.log(
+                //     `Transaction ${transaction.status}: ${transaction.id}<br><br>See console for all available details`,
+                // );
+                // console.log(
+                //     "Capture result",
+                //     orderData,
+                //     JSON.stringify(orderData, null, 2),
+                // );
                 setSuccess(true)
             }
         } catch (error) {

@@ -4,7 +4,7 @@ const productSchema = new mongoose.Schema({
     title: { type: String, required: [true, "Please enter product title"] },
     act_price: { type: Number, required: [true, "Please enter product price"], maxLength: [8, "Price cannot exceed 8 characters"] },
     dis_price: { type: Number, maxLength: [8, "Price cannot exceed 8 characters"] },
-    discount: { type: Number },
+    discount: { type: Number, default: 0 },
     rating: { type: Number, default: 0 },
     offers: [{ type: [String] }],
     highlights: { type: [String] },
