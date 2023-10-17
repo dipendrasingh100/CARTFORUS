@@ -4,7 +4,7 @@
     position: fixed;
     left: -65vw;
     background-color: #264653;
-    z-index: 999;
+    z-index: 9999;
     transition: left .2s ease-in;
 }
 
