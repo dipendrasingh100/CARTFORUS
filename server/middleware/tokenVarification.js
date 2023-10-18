@@ -10,7 +10,7 @@ const verifyToken = (req, res, next) => {
 
         jwt.verify(token, process.env.SECRET_KEY, asyncHandler(async (err, decoded) => {
             if (err) {
-                return next(new ErrorHandler("Session Expired Login Again"), 401)
+                return next(new ErrorHandler("Session Expired Login Again", 401))
             }
             req.id = decoded.id
             // req.user = await User.findById(decoded.id)
@@ -18,7 +18,7 @@ const verifyToken = (req, res, next) => {
         }))
 
     } else {
-        return next(new ErrorHandler("Please Login"), 401)
+        return next(new ErrorHandler("Please Login", 401))
     }
 }
 
