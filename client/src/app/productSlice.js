@@ -76,7 +76,6 @@ const productReducer = createSlice({
         });
 
         builder.addCase(featuredProducts.rejected, (state, action) => {
-            console.log(action.error);
             state.error = action.payload
         })
 

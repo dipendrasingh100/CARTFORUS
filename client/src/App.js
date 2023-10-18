@@ -25,7 +25,6 @@ import Order from './components/Order'
 
 const App = () => {
   const dispatch = useDispatch()
-  console.log(process.env.REACT_APP_HOST_URL);
   const { error } = useSelector(state => state.user)
 
   useEffect(() => {
