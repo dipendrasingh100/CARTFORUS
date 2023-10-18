@@ -1,5 +1,4 @@
 import axios from "axios"
 
-// https://carforus.onrender.com
-const server = axios.create({ baseURL: "https://carforus.onrender.com" })
+const server = axios.create({ baseURL: process.env.REACT_APP_HOST_URL })
 export default server
